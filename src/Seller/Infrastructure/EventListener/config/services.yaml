@@ -1,0 +1,10 @@
+services:
+
+  update_inventory_when_cart_is_committed:
+      class: App\Seller\Infrastructure\EventListener\UpdateInventoryWhenCartIsCommitted
+      arguments:
+        - '@App\Seller\Application\Service\UpdateInventoryOfSeller'
+        - '@App\Customer\Infrastructure\Persistence\Repository\DoctrineCartRepository'
+      tags:
+        - { name: kernel.event_listener, event: cart_was_committed, method: onBind }
+

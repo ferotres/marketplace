@@ -1,0 +1,63 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    API_VERSION: '%env(resolve:API_VERSION)%'
+    API_AUTHOR: '%env(resolve:API_AUTHOR)%'
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        bind:
+            $apiVersion: '%API_VERSION%'
+            $apiAuthor: '%API_AUTHOR%'
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\Catalog\Application\Service\:
+        resource: '../src/Catalog/Application/Service/*'
+
+    App\Seller\Application\Service\:
+        resource: '../src/Seller/Application/Service/*'
+
+    App\Customer\Application\Service\:
+        resource: '../src/Customer/Application/Service/*'
+
+    App\Catalog\Infrastructure\Persistence\Repository\:
+        resource: '../src/Catalog/Infrastructure/Persistence/Repository/*'
+
+    App\Seller\Infrastructure\Persistence\Repository\:
+            resource: '../src/Seller/Infrastructure/Persistence/Repository/*'
+
+    App\Customer\Infrastructure\Persistence\Repository\:
+            resource: '../src/Customer/Infrastructure/Persistence/Repository/*'
+
+    # controllers are imported separately to make sure services can be injected
+    # as action arguments even if you don't extend any base controller class
+    App\Shared\Infrastructure\UI\Http\Controller\:
+        resource: '../src/Shared/Infrastructure/UI/Http/Controller'
+        tags: ['controller.service_arguments']
+
+    App\Catalog\Infrastructure\UI\Http\Controller\:
+        resource: '../src/Catalog/Infrastructure/UI/Http/Controller'
+        tags: ['controller.service_arguments']
+
+    App\Seller\Infrastructure\UI\Http\Controller\:
+        resource: '../src/Seller/Infrastructure/UI/Http/Controller'
+        tags: ['controller.service_arguments']
+
+    App\Customer\Infrastructure\UI\Http\Controller\:
+        resource: '../src/Customer/Infrastructure/UI/Http/Controller'
+        tags: ['controller.service_arguments']
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+
+imports:
+    - resource: '../src/Catalog/Infrastructure/Persistence/config/services.yaml'
+    - resource: '../src/Seller/Infrastructure/Persistence/config/services.yaml'
+    - resource: '../src/Seller/Infrastructure/EventListener/config/services.yaml'
+    - resource: '../src/Customer/Infrastructure/Persistence/config/services.yaml'

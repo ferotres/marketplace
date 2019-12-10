@@ -1,0 +1,24 @@
+create_cart:
+    path: /cart
+    controller: App\Customer\Infrastructure\UI\Http\Controller\CartController::create
+    methods: [POST]
+
+remove_cart:
+    path: /cart/{cartId}
+    controller: App\Customer\Infrastructure\UI\Http\Controller\CartController::remove
+    methods: [DELETE]
+
+commit_cart:
+    path: /cart/{cartId}/commit
+    controller: App\Customer\Infrastructure\UI\Http\Controller\CartController::commit
+    methods: [PUT]
+
+add_product_to_cart:
+    path: /cart/{cartId}/product/{productId}
+    controller: App\Customer\Infrastructure\UI\Http\Controller\CartController::addProduct
+    methods: [POST]
+
+remove_product_to_cart:
+    path: /cart/{cartId}/item/{cartItemId}
+    controller: App\Customer\Infrastructure\UI\Http\Controller\CartController::removeProduct
+    methods: [DELETE]

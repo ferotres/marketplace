@@ -1,0 +1,16 @@
+
+api:
+    resource: '../src/Shared/Infrastructure/UI/Http/routes/routes.yaml'
+    prefix: /
+
+api_catalog:
+    resource: '../src/Catalog/Infrastructure/UI/Http/routes/routes.yaml'
+    prefix: /api
+
+api_seller:
+    resource: '../src/Seller/Infrastructure/UI/Http/routes/routes.yaml'
+    prefix: /api
+
+api_customer:
+    resource: '../src/Customer/Infrastructure/UI/Http/routes/routes.yaml'
+    prefix: /api

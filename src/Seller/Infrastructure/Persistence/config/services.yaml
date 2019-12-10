@@ -1,0 +1,5 @@
+services:
+    App\Seller\Infrastructure\Persistence\Repository\DoctrineSellerRepository: ~
+    App\Seller\Domain\Model\SellerRepository: '@App\Seller\Infrastructure\Persistence\Repository\DoctrineSellerRepository'
+    App\Seller\Infrastructure\Persistence\Repository\DoctrineSellerProductRepository: ~
+    App\Seller\Domain\Model\SellerProductRepository: '@App\Seller\Infrastructure\Persistence\Repository\DoctrineSellerProductRepository'

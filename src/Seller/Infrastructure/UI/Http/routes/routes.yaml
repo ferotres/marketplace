@@ -1,0 +1,29 @@
+create_seller:
+    path: /seller
+    controller: App\Seller\Infrastructure\UI\Http\Controller\SellerController::create
+    methods: [POST]
+
+delete_seller:
+    path: /seller/{sellerId}
+    controller: App\Seller\Infrastructure\UI\Http\Controller\SellerController::delete
+    methods: [DELETE]
+
+update_seller:
+    path: /seller/{sellerId}
+    controller: App\Seller\Infrastructure\UI\Http\Controller\SellerController::update
+    methods: [PUT]
+
+create_seller_product:
+    path: /seller/{sellerId}/product/{productId}
+    controller: App\Seller\Infrastructure\UI\Http\Controller\SellerController::addProduct
+    methods: [POST]
+
+delete_seller_product:
+    path: /seller/product/{sellerProductId}
+    controller: App\Seller\Infrastructure\UI\Http\Controller\SellerController::removeProduct
+    methods: [DELETE]
+
+update_seller_product:
+    path: /seller/product/{sellerProductId}
+    controller: App\Seller\Infrastructure\UI\Http\Controller\SellerController::updateProduct
+    methods: [PATCH]

@@ -1,0 +1,36 @@
+version: "3.4"
+services:
+    apache_marketplace:
+        container_name: "www-marketplace"
+        build:
+            context: ..
+            dockerfile: docker/apache/Dockerfile
+        ports:
+            - 8008:80
+        volumes:
+            - ../:/var/www/app
+        environment:
+            - APP_ENVIRONMENT=dev
+            - XDEBUG_IDEKEY=PHPSTORM
+            - PHP_XDEBUG_ENABLED=1
+        depends_on:
+            - mysql_marketplace
+
+    mysql_marketplace:
+        container_name: "mysql-marketplace"
+        image: mysql-marketplace
+        build:
+            context: mysql/
+        ports:
+            - 3306:3306
+        volumes:
+            - ./data/marketplace-mysql:/var/lib/mysql
+        networks:
+            default:
+                aliases:
+                    - mysql.service
+        environment:
+            MYSQL_DATABASE: marketplace
+            MYSQL_ROOT_PASSWORD: test
+            MYSQL_USER: test
+            MYSQL_PASSWORD: test

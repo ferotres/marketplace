@@ -1,0 +1,9 @@
+home:
+    path: /
+    controller: App\Shared\Infrastructure\UI\Http\Controller\ApiController::home
+    methods: [GET]
+
+home_api:
+    path: /api
+    controller: App\Shared\Infrastructure\UI\Http\Controller\ApiController::home
+    methods: [GET]

@@ -1,0 +1,3 @@
+services:
+    App\Catalog\Infrastructure\Persistence\Repository\DoctrineProductRepository: ~
+    App\Catalog\Domain\Model\ProductRepository: '@App\Catalog\Infrastructure\Persistence\Repository\DoctrineProductRepository'

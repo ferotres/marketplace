@@ -1,0 +1,5 @@
+services:
+    App\Customer\Infrastructure\Persistence\Repository\DoctrineCustomerRepository: ~
+    App\Customer\Domain\Model\CustomerRepository: '@App\Customer\Infrastructure\Persistence\Repository\DoctrineCustomerRepository'
+    App\Customer\Infrastructure\Persistence\Repository\DoctrineCartRepository: ~
+    App\Customer\Domain\Model\CartRepository: '@App\Customer\Infrastructure\Persistence\Repository\DoctrineCartRepository'

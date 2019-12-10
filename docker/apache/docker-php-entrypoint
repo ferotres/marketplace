@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -ex
+
+PHP_VERSION=7.2
+
+function setXdebugConfig() {
+echo "zend_extension=xdebug.so
+[xdebug]
+xdebug.default_enable=0
+xdebug.remote_enable=1
+xdebug.remote_autostart=1
+xdebug.remote_port=9089
+xdebug.remote_host=172.17.0.1
+xdebug.remote_log=/tmp/xdebug.log
+xdebug.idekey=\"${XDEBUG_IDEKEY}\"
+" > /etc/php/${PHP_VERSION}/apache2/conf.d/20-xdebug.ini
+}
+
+if [[ ! -z "${XDEBUG_IDEKEY}" ]]
+then
+    setXdebugConfig
+else
+    unset PHP_XDEBUG_ENABLED
+    rm -f /etc/php/${PHP_VERSION}/apache2/conf.d/20-xdebug.ini
+    rm -f /etc/php/${PHP_VERSION}/cli/conf.d/20-xdebug.ini
+fi
+
+cd /var/www/app
+
+chmod -R 777 /var/www/app/var/cache || true
+chmod -R 777 /var/www/app/var/log || true
+
+exec "$@"

@@ -1,0 +1,19 @@
+show_catalog:
+    path: /products
+    controller: App\Catalog\Infrastructure\UI\Http\Controller\CatalogController::index
+    methods: [GET]
+
+create_product:
+    path: /product
+    controller: App\Catalog\Infrastructure\UI\Http\Controller\CatalogController::create
+    methods: [POST]
+
+delete_product:
+    path: /product/{productId}
+    controller: App\Catalog\Infrastructure\UI\Http\Controller\CatalogController::delete
+    methods: [DELETE]
+
+update_product:
+    path: /product/{productId}
+    controller: App\Catalog\Infrastructure\UI\Http\Controller\CatalogController::update
+    methods: [PUT]
